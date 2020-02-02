@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using Player.Movement;
-using System;
-using UnityEditor.Animations;
 using UnityEngine.UI;
 using System.Collections;
 

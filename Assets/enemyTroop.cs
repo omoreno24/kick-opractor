@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class enemyTroop : MonoHelper
 {
+    public Animator Animator;
     public int health = 100;
     public bool canBeHurt = true;
     public AudioSource AudioSource;
@@ -27,7 +28,15 @@ public class enemyTroop : MonoHelper
         while(true)
         {
             Agent.destination = player.transform.position;
-            
+
+            if(Agent.velocity.magnitude > 0)
+            {
+                Animator.SetBool("Running", true);
+            }
+            else
+            {
+                Animator.SetBool("Running", false);
+            }
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -36,20 +45,29 @@ public class enemyTroop : MonoHelper
     {
         if(other.tag == "PlayerHitbox" && canBeHurt)
         {
-            shaker.ShakeOneShotDirectional(player.transform.position - transform.position,0.1f);
+            shaker.ShakeOneShotDirectional(player.transform.position - transform.position,0.07f);
             AudioSource.PlayOneShot(HitCrackSounds[Random.Range(0, HitCrackSounds.Length - 1)]);
+
             health -= 45;
             canBeHurt = false;
             Invoke("ReHurt", 0.6f);
+
             var newPoss = (other.transform.position - transform.position) * 0.3f;
             
             transform.position -= newPoss;  //Vector3.Lerp(transform.position, transform.position - (other.transform.position - transform.position) * 1, Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, -1, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -3.59f, transform.position.z);
+
+            var newPoss2 = other.transform.position;
+
+            newPoss2.y = -3.59f;
+            transform.LookAt(newPoss2);
         }
 
         if (health <= 0)
         {
-            Destroy(this.gameObject);
+            this.Animator.SetTrigger("Fixed");
+            Agent.isStopped = true;
+            Destroy(this);
             FindObjectOfType<PlayerController>().counter++;
         }
 
