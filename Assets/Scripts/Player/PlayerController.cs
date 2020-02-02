@@ -42,7 +42,6 @@ namespace Player
                 if(CanPunch) StartCoroutine(Punch());
             }
 
-
             animator.SetBool("Running", running);
 
             if (running && !properties.FX.isPlaying) properties.FX.PlayOneShot(properties.WalkClip, 0.2f);
@@ -62,7 +61,7 @@ namespace Player
             animator.SetTrigger("punch");
             //animator.SetBool("Punch", true);
             animator.SetBool("Running", false);
-
+            PlayPunchSound(UnityEngine.Random.Range(0,properties.PunchClips.Length-1));
             hitbox.SetActive(true);
             isPunching = true;
 
@@ -85,6 +84,11 @@ namespace Player
         public void ResetPunch()
         {
             animator.SetBool("Punch", false);
+        }
+
+        public void PlayPunchSound(int i)
+        {
+            properties.FX.PlayOneShot(properties.PunchClips[i]);
         }
     }
 }

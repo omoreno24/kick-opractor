@@ -2,23 +2,34 @@
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class enemyTroop : MonoHelper
 {
     public int health = 100;
     public bool canBeHurt = true;
+    public AudioSource AudioSource;
+    public AudioSource AudioSource2;
+
+    public AudioClip[] HitCrackSounds;
+    public AudioClip[] HitPunchSounds;
+
+    public NavMeshAgent Agent;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Agent = GetComponent<NavMeshAgent>();
+        StartCoroutine(AgentUpdate());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator AgentUpdate()
     {
-
-        //GRAVITY
-        //transform.position -= new Vector3(0, 2 * Time.deltaTime, 0);
+        while(true)
+        {
+            Agent.destination = player.transform.position;
+            
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,6 +37,7 @@ public class enemyTroop : MonoHelper
         if(other.tag == "PlayerHitbox" && canBeHurt)
         {
             shaker.ShakeOneShotDirectional(player.transform.position - transform.position,0.1f);
+            AudioSource.PlayOneShot(HitCrackSounds[Random.Range(0, HitCrackSounds.Length - 1)]);
             health -= 45;
             canBeHurt = false;
             Invoke("ReHurt", 0.6f);

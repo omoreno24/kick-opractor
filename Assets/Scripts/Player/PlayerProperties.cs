@@ -14,6 +14,7 @@ namespace Player
         public string HeavyHitButton;
 
         public AudioClip WalkClip;
+        public AudioClip[] PunchClips;
         public AudioSource FX;
         public AudioSource FX2;
     }
