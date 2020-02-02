@@ -32,7 +32,10 @@ public class enemyTroop : MonoHelper
             var newPoss = (other.transform.position - transform.position) * 0.3f;
             
             transform.position -= newPoss;  //Vector3.Lerp(transform.position, transform.position - (other.transform.position - transform.position) * 1, Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, -1, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -3.59f, transform.position.z);
+            var newPoss2 = other.transform.position;
+            newPoss2.y = -3.59f;
+            transform.LookAt(newPoss2);
         }
 
         if (health <= 0)
