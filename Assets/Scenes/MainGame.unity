@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
+  - component: {fileID: 534669907}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1033,6 +1034,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampTime: 0.15
   target: {fileID: 0}
+--- !u!114 &534669907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee4b55dd0c8f4b2a870661f67853306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 534669905}
+  camRecoveryTime: 0.3
+  decreaseFactor: 1
+  Player1: {fileID: 763684060}
+  ButtonEvent: {fileID: 0}
 --- !u!1 &578134989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1734,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player@Fighting Idle
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9d05dc773ac4344fca66931365e4d956, type: 2}
+    - target: {fileID: 9500000, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -3.6696339
@@ -2095,14 +2121,6 @@ PrefabInstance:
     - target: {fileID: 400068, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9d05dc773ac4344fca66931365e4d956, type: 2}
-    - target: {fileID: 9500000, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08bbb116b9bfb4d35b717d9058aa92c8, type: 3}
