@@ -25,7 +25,7 @@ public class enemyTroop : MonoHelper
     {
         if(other.tag == "PlayerHitbox" && canBeHurt)
         {
-            shaker.ShakeOneShotDirectional(player.transform.position - transform.position,0.1f);
+            shaker.ShakeOneShotDirectional(player.transform.position - transform.position,0.03f);
             health -= 45;
             canBeHurt = false;
             Invoke("ReHurt", 0.6f);
